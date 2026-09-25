@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class HomePage {
     public SelenideElement loginlink = $(By.id("login2"));
-    public ElementsCollection products = $$(By.xpath("//div[@class='col-lg-4 col-md-6 mb-4']//a"));
+    public ElementsCollection products = $$(By.xpath("//div[@class='col-lg-4 col-md-6 mb-4']"));
     public SelenideElement logo = $(By.xpath("//a[@ class='navbar-brand']"));
     public SelenideElement homeLink = $(By.xpath("//a[@ class='nav-link'and text()='Home ']"));
     public SelenideElement contactLink = $(By.xpath("//a[@ class='nav-link'and text()='Contact']"));
@@ -29,9 +29,13 @@ public class HomePage {
     public SelenideElement selectProduct = $(By.xpath("//a[text()='Samsung galaxy s6']"));
     public SelenideElement nameProduct = $(By.xpath("//h2[@class='name']"));
     public SelenideElement priceProduct = $(By.xpath("//h3[@class='price-container']"));
+    public ElementsCollection priceProducts = $$(By.xpath("//h5[contains(text(),'$')]"));
     public SelenideElement productDescription =$(By.id("myTabContent"));
     public SelenideElement addToCartButton = $(By.xpath("//a[@href='#'and text()='Add to cart']"));
     public  SelenideElement image=$(By.xpath("//div[@class='product-image']"));
     public SelenideElement welcomeLink = $(By.xpath("//a[@class='nav-link' and contains( text(),'Welcome')]"));
+    public SelenideElement nextButton = $(By.xpath("//button[text()='Next']"));
+    public SelenideElement previousButton = $(By.id("prev2"));
+    public ElementsCollection productsFromSecondPage = $$(By.xpath("//h4[@class='card-title']"));
 
 }

@@ -1,6 +1,7 @@
 package test.Steps;
 
 import com.codeborne.selenide.Selenide;
+import com.github.javafaker.Faker;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
@@ -8,7 +9,9 @@ import test.Pages.SignUpPage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 
 public class SignUpSteps {
     @And("user fill sign up form")
@@ -78,5 +81,35 @@ public class SignUpSteps {
     }
 
     {
+    }
+
+    @And("user fill random username")
+    public void userFillRandomUsername() throws IOException {
+        // Write code here that turns the phrase above into concrete actions
+        Faker faker = new Faker();
+        String username = faker.name().username();
+        SignUpPage signUpPage = new SignUpPage();
+        signUpPage.usernamefield.click();
+       signUpPage.usernamefield.sendKeys(username);
+        System.out.println("Name" + username);
+        Selenide.sleep(2000);
+        FileWriter fileWriter = new FileWriter("src/Automation_Test/java/GenrateData/data.txt",true);
+        fileWriter.write(username + "\n");
+        fileWriter.close();
+    }
+
+    @And("user fill password field random password")
+    public void userFillPasswordFieldRandomPassword() throws IOException {
+        // Write code here that turns the phrase above into concrete actions
+        Faker faker = new Faker();
+        SignUpPage signUpPage = new SignUpPage();
+        String password = faker.internet().password(1,8);
+         signUpPage.passwordField.sendKeys(password);
+        System.out.println("Password" + password);
+        Selenide.sleep(2000);
+        FileWriter fileWriter = new FileWriter("src/Automation_Test/java/GenrateData/data.txt",true);
+        fileWriter.write(password + "\n");
+        fileWriter.close();
+
     }
 }

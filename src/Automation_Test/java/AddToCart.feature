@@ -1,5 +1,5 @@
 Feature: Add to cart
-  @negative
+@AddToCart
   Scenario: User can add product in the cart
     When user select 1 product from Main Page
     And add product in the cart
@@ -18,7 +18,7 @@ Feature: Add to cart
     And fill all fields from Place Order Page
     And click on the 'Purchase' button from Place Order page
     Then Thank you for your purchase! is displayed
-@negative
+  @AddToCart
     Scenario: User not fill in the Place Order
       When user select 1 product from Main Page
       And add product in the cart
@@ -35,7 +35,7 @@ Feature: Add to cart
       And  click on the order place button
       And click on the 'Purchase' button from Place Order page
       Then appear allert with message 'Please fill out Name and Creditcard.'
-@negative
+  @AddToCart
       Scenario: User fill only name and credit cart
         When user select 1 product from Main Page
         And add product in the cart
@@ -54,7 +54,7 @@ Feature: Add to cart
         And complete the name and credit card fields
         And click on the 'Purchase' button from Place Order page
         Then Thank you for your purchase! is displayed
-@negative
+  @AddToCart
         Scenario: Add product in the cart and fill Place order from file
         User can add product in the cart
           When user select 1 product from Main Page

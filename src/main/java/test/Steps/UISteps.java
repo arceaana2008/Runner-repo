@@ -1,6 +1,7 @@
 package test.Steps;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.PendingException;
@@ -8,11 +9,17 @@ import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebElement;
 import test.Pages.CartPage;
 import test.Pages.HomePage;
 import org.junit.Assert;
 import test.Pages.PlaceOrderPage;
 import test.Pages.ProductPage;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -275,8 +282,73 @@ public class UISteps {
         Selenide.sleep(2000);
     }
 
+    @When("Count products from the site")
+    public void countProductsFromTheSite() {
         // Write code here that turns the phrase above into concrete actions
+       HomePage homePage = new HomePage();
+       Selenide.sleep(2000);
+       //System.out.println(homePage.products.stream().count());
+      // Assert.assertTrue(homePage.products.stream().count()==9);
+        ElementsCollection productsList = homePage.products;
+          for (SelenideElement product : productsList) {
+              System.out.println(productsList.size());
+              Assert.assertTrue(homePage.products.size()==9);
+          }
 
     }
+
+    @And("Click on the next button")
+    public void clickOnTheNextButton() {
+        // Write code here that turns the phrase above into concrete actions
+       Selenide.sleep(2000);
+        HomePage homePage = new HomePage();
+       homePage.nextButton.click();
+       Selenide.sleep(3000);
+    }
+
+
+    @And("Count products from the second page")
+    public void countProductsFromTheSecondPage() {
+        // Write code here that turns the phrase above into concrete actions
+       HomePage homePage = new HomePage();
+       Selenide.sleep(2000);
+       // System.out.println(homePage.products.stream().count());
+       // Assert.assertTrue(homePage.products.size()==6);
+        ElementsCollection productsList = homePage.products;
+        for (SelenideElement product : productsList){
+            System.out.println(productsList.size());
+            Assert.assertTrue(homePage.products.size()==6);
+        }
+    }
+
+    @And("Click on the previous button")
+    public void clickOnThePreviousButton() {
+        // Write code here that turns the phrase above into concrete actions
+        HomePage homePage = new HomePage();
+        homePage.previousButton.click();
+        Selenide.sleep(2000);
+    }
+
+    @And("Second page contains Asus")
+    public void secondPageContainsAsus() throws IOException {
+        // Write code here that turns the phrase above into concrete actions
+        boolean Asus = false;
+        HomePage homePage = new HomePage();
+        Selenide.sleep(2000);
+        for (SelenideElement i : homePage.productsFromSecondPage){
+            String productsName = i.getText();
+            Selenide.sleep(2000);
+            System.out.println("Products" + productsName);
+            if(productsName.contains("ASUS")){
+                Asus = true;
+                break;
+
+            }
+
+         Assert.assertTrue(Asus);
+
+        }
+    }
+}
 
 

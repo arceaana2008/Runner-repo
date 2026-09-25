@@ -125,6 +125,32 @@ public class LogInSteps {
         Assert.assertTrue(homePage.welcomeLink.isDisplayed());
         Selenide.sleep(2000);
     }
+
+    @And("user fill random username for login")
+    public void userFillRandomUsernameForLogin() throws IOException {
+        // Write code here that turns the phrase above into concrete actions
+LoginPage loginPage = new LoginPage();
+FileReader fileReader = new FileReader("src/Automation_Test/java/GenrateData/data.txt");
+BufferedReader bufferedReader = new BufferedReader(fileReader);
+String username = bufferedReader.readLine();
+        System.out.println("Numele" + username);
+        loginPage.userNameField.click();
+        loginPage.userNameField.sendKeys(username);
+        Selenide.sleep(2000);
+    }
+
+    @And("user fill random password for login")
+    public void userFillRandomPasswordForLogin() throws IOException {
+        // Write code here that turns the phrase above into concrete actions
+       LoginPage loginPage = new LoginPage();
+       FileReader fileReader = new FileReader("src/Automation_Test/java/GenrateData/data.txt");
+       BufferedReader bufferedReader = new BufferedReader(fileReader);
+       String password = new BufferedReader(new FileReader("src/Automation_Test/java/GenrateData/data.txt")).lines().skip(1).findFirst().orElse("");
+        System.out.println("Parola" + password);
+        loginPage.passwordField.click();
+        loginPage.passwordField.sendKeys(password);
+        Selenide.sleep(2000);
+    }
 }
 
 

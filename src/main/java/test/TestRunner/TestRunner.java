@@ -6,8 +6,8 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
 features = {"src/Automation_Test"},
-        glue = {"test"},
-        tags = "@negative"
+        glue = {"test"}
+       // tags = "@LogIn or @SignUp or @AddToCart or @Card"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 @Override
